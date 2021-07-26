@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="test_pkg" type="talker.py" name="velocity_publisher" output="screen">
+        <rosparam file="$(find test_pkg)/config/param.yaml" command="load"/>
+    </node>  
+                                                  
+    <node pkg="test_pkg" type="listener.py" name="pose_subscriber" output="screen" /> 
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim_node" output="screen" />
+
+</launch>
+
