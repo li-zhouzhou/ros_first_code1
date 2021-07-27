@@ -19,16 +19,15 @@ def velocity_publisher():
     rate = rospy.Rate(10) 
 
 
-    f=open('/home/dji/catkin_ws2/src/test_pkg/config/param.yaml')
-    content=yaml.load(f)
+#    f=open('/home/dji/catkin_ws2/src/test_pkg/config/param.yaml')
+#    content=yaml.load(f)
 
 
     while not rospy.is_shutdown():
 		# 初始化geometry_msgs::Twist类型的消息
         vel_msg = Twist()
-        vel_msg.linear.x = content['speed']
-        vel_msg.angular.z = content['direction']
-         #print(content)
+        vel_msg.linear.x = rospy.get_param('~speed')       #content['speed']
+        vel_msg.angular.z = rospy.get_param('~direction')  #content['direction']
 
 		# 发布消息
         turtle_vel_pub.publish(vel_msg)
